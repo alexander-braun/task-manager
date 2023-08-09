@@ -106,6 +106,7 @@ userSchema.statics.findByCredentials = (email, password) => {
 
 // Methods methods are accessible on the instance of User
 userSchema.methods.generateAuthToken = function () {
+  console.log("sign token");
   const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
   this.tokens = this.tokens.concat({ token });
   return from(this.save()).pipe(switchMap(() => of(token)));

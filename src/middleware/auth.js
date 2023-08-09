@@ -4,6 +4,7 @@ const { switchMap, catchError, EMPTY, tap, of } = require("rxjs");
 
 const auth = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
+  console.log("verify token");
   of(jwt.verify(token, process.env.JWT_SECRET))
     .pipe(
       switchMap((decoded) =>
