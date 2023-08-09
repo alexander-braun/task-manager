@@ -13,3 +13,7 @@ app.use(TaskRouter);
 app.listen(port, () => {
   console.log("Server is up on port", port);
 });
+
+app.get("", (req, res) => {
+  res.send("Hello");
+});
