@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index",
+    "start": "npm i && node src/index",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index"
   },
   "author": "",
