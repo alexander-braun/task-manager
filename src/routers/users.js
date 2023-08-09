@@ -10,7 +10,6 @@ const sendMail = require("../emails/account");
 const router = express.Router();
 
 router.post("/users", (req, res) => {
-  console.log("USERS");
   const user = new User(req.body);
   from(user.save())
     .pipe(
