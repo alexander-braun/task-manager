@@ -22,11 +22,13 @@ router.post("/users", (req, res) => {
       }),
       tap(([user, token]) => {
         res.status(201).send({ user, token });
-        sendMail(
-          user.email,
-          "Thanks for signing up!",
-          `Welcome to roadmap ${user.name}. I hope you enjoy!`
-        );
+        if (process.env.ENV !== "DEVELOPMENT") {
+          sendMail(
+            user.email,
+            "Thanks for signing up!",
+            `Welcome to roadmap ${user.name}. I hope you enjoy!`
+          );
+        }
       })
     )
     .subscribe();
@@ -132,11 +134,13 @@ router.delete("/users/me", auth, (req, res) => {
           res.status(500).send();
         } else {
           res.status(200).send(user);
-          sendMail(
-            user.email,
-            "Your account has been removed.",
-            `Good Bye ${user.name} and thank you for using roadmap!`
-          );
+          if (process.env.ENV !== "DEVELOPMENT") {
+            sendMail(
+              user.email,
+              "Your account has been removed.",
+              `Good Bye ${user.name} and thank you for using roadmap!`
+            );
+          }
         }
       })
     )
