@@ -3,7 +3,7 @@ const { of } = require("rxjs");
 
 of(
   mongoose.connect(process.env.MONGO_DB_URL, {
-    dbName: "task-manager",
+    dbName: process.env.DATABASE_NAME,
     autoIndex: true,
   })
 ).subscribe(() => console.log("MONGOOSE CONNECTED"));
